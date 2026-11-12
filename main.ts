@@ -1,10 +1,10 @@
-import { copyFileSync } from 'node:fs';
-import { join } from 'node:path';
+﻿import * as fs from 'node:fs';
+import * as path from 'node:path';
 
-// Cutest Picture entry: copies our cute illustrated creature to the grader output
-const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
-const destPath = join(outDir, 'entry.png');
-const srcPath = new URL('./entry.png', import.meta.url);
+// Entry for cutest-picture-01 competition: copies our cute picture to the grader output
+const targetFolder = process.env.MAKEFUN_OUTPUT_DIR || '/output';
+const sourceImage = new URL('./entry.png', import.meta.url);
+const outputFile = path.join(targetFolder, 'entry.png');
 
-copyFileSync(srcPath, destPath);
-console.log(`Copied cute entry picture to ${destPath}`);
+fs.copyFileSync(sourceImage, outputFile);
+console.log('Delivered cute picture to ' + outputFile);
